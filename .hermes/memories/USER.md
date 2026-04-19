@@ -1,0 +1,1 @@
+User prefers using OpenRouter with qwen/qwen3.5-35b-a3b for sub-agents. Sub-agent system (spawn-agent.sh) should share the main agent's config.yaml and inherit environment variables (ANTHROPIC_API_KEY, OPENROUTER_API_KEY, BROWSERBASE_*) to ensure tool and model access.

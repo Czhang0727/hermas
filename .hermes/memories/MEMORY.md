@@ -1,0 +1,1 @@
+Sub-agent system at $HERMES_HOME/sub-agents/ uses a template-based instance spawning. Key fix: spawn-agent.sh was modified to copy the main ~/.hermes/config.yaml to the instance directory and export parent environment variables before launching the hermes chat process to prevent 'No inference provider configured' or 'balance too low' errors.

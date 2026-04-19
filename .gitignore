@@ -1,5 +1,45 @@
-# Hermes runtime state
-.hermes/
+# Hermes runtime state — credentials, ephemeral state, generated caches.
+# Static content (skills/, templates/, SOUL.md, memories config, sub-agents/template, bin) IS tracked.
+
+# ─── Hermes runtime credentials & state ───
+.hermes/.env
+.hermes/.env.backup
+.hermes/.env.local
+.hermes/auth.json
+.hermes/auth.lock
+.hermes/gateway.pid
+.hermes/gateway_state.json
+.hermes/processes.json
+.hermes/state.db
+.hermes/state.db-shm
+.hermes/state.db-wal
+.hermes/.update_check
+.hermes/.skills_prompt_snapshot.json
+.hermes/channel_directory.json
+.hermes/models_dev_cache.json
+
+# ─── Hermes runtime directories ───
+.hermes/sessions/
+.hermes/logs/
+.hermes/cache/
+.hermes/cron/
+.hermes/sandboxes/
+.hermes/messages/
+.hermes/audio_cache/
+.hermes/image_cache/
+.hermes/hooks/
+.hermes/pairing/
+.hermes/whatsapp/
+.hermes/migration/
+
+# ─── Sub-agent runtime (auto-generated, contains keys) ───
+.hermes/sub-agents/instances/
+.hermes/sub-agents/registry.json
+.hermes/sub-agents/logs/
+.hermes/sub-agents/memory/
+.hermes/sub-agents/runtime/mq.db
+.hermes/sub-agents/skills-draft/
+
 # Artifact from accidental unexpanded $HOME variable
 $HOME/
 

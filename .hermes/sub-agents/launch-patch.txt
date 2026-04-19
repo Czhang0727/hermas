@@ -1,0 +1,21 @@
+mkdir -p "$BASE_DIR/logs"
+
+if [[ "$MODE" = "gateway" ]]; then
+    HERMES_HOME="$INSTANCE_DIR" conda run -n hermes-agent hermes gateway run > "$LOG_FILE" 2>&1 &
+    AGENT_PID=$!
+else
+    # CLI mode - single shot (no -q to avoid premature exit)
+    HERMES_HOME="$INSTANCE_DIR" conda run -n hermes-agent hermes chat "You are a sub-agent. Read your initial task from your message inbox using: $MQ receive --agent $AGENT_ID. Then execute the task following your SOUL.md instructions." -Q > "$LOG_FILE" 2>&1 &
+    AGENT_PID=$!
+fi
+info "Launched agent (PID=$AGENT_PID, mode=$MODE)"
+
+# ─── Step 14: Register Agent ───
+python3 "$MANAGER" register --agent-id "$AGENT_ID" --role "$ROLE" --pid "$AGENT_PID" --port "$PORT" --task "$TASK"
+info "Registered agent in registry"
+
+# ─── Step 15: Chain Completion Script (Background) ───
+(wait $AGENT_PID 2>/dev/null; "$BASE_DIR/complete-agent.sh" --agent-id "$AGENT_ID") &
+info "Completion watcher started"
+
+# ─── Step 16: Output Result ───

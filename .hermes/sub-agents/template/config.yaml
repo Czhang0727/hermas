@@ -1,0 +1,20 @@
+model:
+  provider: openrouter
+  model: __MODEL__
+  base_url: https://openrouter.ai/api/v1
+  api_key: __API_KEY__
+
+memory:
+  memory_enabled: true
+  user_profile_enabled: false
+  memory_char_limit: 2200
+  user_char_limit: 1375
+
+platforms:
+  api_server:
+    enabled: true
+    host: 127.0.0.1
+    port: __PORT__
+    key: __API_KEY__
+
+# Headless -- no Discord platform
